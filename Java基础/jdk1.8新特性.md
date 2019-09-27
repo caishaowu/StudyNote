@@ -240,6 +240,13 @@ public class BinaryOperatorTest {
 
 ## 3、Stream
 
+- 和迭代器不同的是，Stream可以并行化操作，迭代器只能命令式地、串行化操作
+- 当使用串行方式去遍历时，每个item读完后再读下一个item
+- 使用并行去遍历时，数据会被**分成多个段**，其中每一个都在**不同的线程**中处理，然后将结果一起输出
+- Stream的并行操作依赖于 Java7 中引入的 Fork/Join 框架
+
+
+
 ## 4、Optional
 
 ### 4.1、定义
