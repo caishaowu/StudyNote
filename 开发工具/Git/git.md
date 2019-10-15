@@ -1,6 +1,6 @@
 # Git结构
 
-![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728221533.png)
+![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728221533.png)
 
 # Git命令行操作
 
@@ -66,19 +66,19 @@
 
 - **git log** 
 
-![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728224404.png)
+![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728224404.png)
 
 - **git log --pretty=oneline**
 
-![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728224603.png)
+![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728224603.png)
 
 - **git log --oneline**
 
-![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728224656.png)
+![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728224656.png)
 
 - **git reflog**
 
-![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728225127.png)
+![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728225127.png)
 
 ### 1.3.5、分支操作
 
@@ -93,7 +93,7 @@
 
   - 冲突的表现
 
-    ![](D:\File\学习笔记\开发工具\Git\images\搜狗截图20190728230046.png)
+    ![](D:\File\studyNote\开发工具\Git\images\搜狗截图20190728230046.png)
 
   - 冲突的解决
     1. 编辑文件，删除特殊符号
