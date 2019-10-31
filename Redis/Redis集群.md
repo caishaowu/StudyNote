@@ -62,7 +62,7 @@ ping 时要携带一些元数据，如果很频繁，可能会加重网络负担
 
 来了一个 key，首先计算 hash 值，然后对节点数取模。然后打在不同的 master 节点上。一旦某一个 master 节点宕机，所有请求过来，都会基于最新的剩余 master 节点数去取模，尝试去取数据。这会导致**大部分的请求过来，全部无法拿到有效的缓存**，导致大量的流量涌入数据库。
 
-[![hash](https://github.com/doocs/advanced-java/raw/master/images/hash.png)](https://github.com/doocs/advanced-java/blob/master/images/hash.png)
+ [![](D:\File\studyNote\images\hash.png)]()
 
 #### 一致性 hash 算法
 
@@ -74,7 +74,7 @@ ping 时要携带一些元数据，如果很频繁，可能会加重网络负担
 
 燃鹅，一致性哈希算法在节点太少时，容易因为节点分布不均匀而造成**缓存热点**的问题。为了解决这种热点问题，一致性 hash 算法引入了虚拟节点机制，即对每一个节点计算多个 hash，每个计算结果位置都放置一个虚拟节点。这样就实现了数据的均匀分布，负载均衡。
 
-[![consistent-hashing-algorithm](https://github.com/doocs/advanced-java/raw/master/images/consistent-hashing-algorithm.png)](https://github.com/doocs/advanced-java/blob/master/images/consistent-hashing-algorithm.png)
+![](D:\File\studyNote\images\consistent-hashing-algorithm.png)
 
 #### redis cluster 的 hash slot 算法
 
@@ -84,7 +84,7 @@ redis cluster 中每个 master 都会持有部分 slot，比如有 3 个 master�
 
 任何一台机器宕机，另外两个节点，不影响的。因为 key 找的是 hash slot，不是机器。
 
-[![hash-slot](https://github.com/doocs/advanced-java/raw/master/images/hash-slot.png)](https://github.com/doocs/advanced-java/blob/master/images/hash-slot.png)
+![](D:\File\studyNote\images\hash-slot.png)
 
 ### redis cluster 的高可用与主备切换原理
 

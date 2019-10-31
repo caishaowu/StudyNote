@@ -38,7 +38,7 @@ public class MyRunnable {
 
 ### 1.3、表达式的作用
 
-- Lambda表达式为Java添加了缺失的函数式编程特性，使我们能将函数当做一等公民对待
+- Lambda表达式为 Java 添加了缺失的函数式编程特性，使我们能将函数当做一等公民对待
 - 在将函数作为一等公民的语言中，Lambda表达式的类型是函数（Python）。但是在Java中， Lambda表达式是对象，他们必须依附于一类特别的对象类型——函数式接口。
 - Lambda 表达式是一种匿名函数，它是没有声明的方法，即没有访问修饰符、返回值声明和名字。
 
@@ -102,12 +102,10 @@ public class FunctionTest {
 
     public static void main(String[] args) {
         FunctionTest test= new FunctionTest();
-        System.out.println(test.compute(5, value -> value * value));
+        System.out.println(test.compute(5, value -> value * value)); //25
 
-        System.out.println( test.compute(5,value -> value / 2));
-        System.out.println( test.compute(3,value -> value - 3));
-
-
+        System.out.println( test.compute(5,value -> value / 2));   //2
+        System.out.println( test.compute(3,value -> value - 3));   //0
 
         test.div(5);
     }
@@ -138,9 +136,12 @@ public class FunctionTest2 {
         System.out.println(test2.compute(1,2,(value1,value2) -> value1 + value2));//3
 		System.out.println(test2.biAndThenTest(1,2,(value1,value2) -> value1 + value2,value -> value * value));  //9
     }
+    
+    //先计算function2，再计算function1
     public int composeTest(int a, Function<Integer,Integer> function1,Function<Integer,Integer> function2){
         return function1.compose(function2).apply(a);
     }
+    //先计算function1，再计算function2
     public int andThenTest(int a, Function<Integer,Integer> function1,Function<Integer,Integer> function2){
         return function1.andThen(function2).apply(a);
     }
