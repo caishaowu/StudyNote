@@ -161,7 +161,10 @@ windows 直接上官网安装即可
 - 系统用户级别：登录当前操作系统的用户方位，信息保存在 ~/.gitconfig 文件
   - `git config --global user.name caisw`
   - `git config --global user.email caisw11@chinaunicom.com`
+  - `git config --global alias.br branch`：给 branch 命令起别名，之后使用该命令直接`git br`即可
 - 就近原则：二者都有设置时采用项目级别的签名
+
+
 
 
 
@@ -189,9 +192,9 @@ windows 直接上官网安装即可
 - `git checkout new_branch`：切换到 new_branch 分支
 - `git checkout - `：切换到上一个分支
 - `git checkout commit id`：切换到指定提交
-
 - `git checkout -- files`使用**暂存区**的内容来**覆盖**工作区的**修改**，用来撤销本地修改。
 - `git checkout HEAD -- files`取出最后一次修改，可以用来进行回滚操作。
+- `git checkout --track brand_name`：同步远程分支
 
 
 
@@ -229,6 +232,11 @@ windows 直接上官网安装即可
 - `git tag -a v2.0 -m ‘v2.0 released’`：创建一个带有附注的标签
 - `git tag -l tag_name`：查找标签
 - `git tag -d tag_name`：删除标签
+- `git show tag_name`：查看标签相关信息
+- `git push origin tag_name`：将指定标签推送到远程库
+- `git push origin --tags`：将本地未推送的标签全部推送到远程库 
+
+ 
 
 ### 3.3、查看信息
 
@@ -278,7 +286,7 @@ windows 直接上官网安装即可
 
 - `git checkout new_branch`：切换到新分支
 
-- `git branch -d new_branch`：删除分支，若该分支的修改没有合并到其他分支，可能会删除失败
+- `git branch -d branch_name`：删除分支，若该分支的修改没有合并到其他分支，可能会删除失败
 
   可使用 -D 强制删除
 
@@ -303,12 +311,16 @@ windows 直接上官网安装即可
 #### ② git push
 
 - 作用：将本地库代码推送到远程库
-- `git push [别名][分支名]`
+- `git push [别名][本地分支名:远程分支名]`
+
+- `git push origin --delete develop`：删除远程库develop分支
+- 
 
 #### ③ git remote add
 
 - `git remote add [别名][远程地址]`：创建远程库地址别名
 - `git remote -v`：查看当前所有远程地址别名
+- `git remote show origin`：显示远程库信息 
 
 ## 4、分支
 

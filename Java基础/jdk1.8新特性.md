@@ -1,3 +1,5 @@
+
+
 ## 1、Lambda表达式
 
 ### 1.1、定义
@@ -42,7 +44,7 @@ public class MyRunnable {
 - 在将函数作为一等公民的语言中，Lambda表达式的类型是函数（Python）。但是在Java中， Lambda表达式是对象，他们必须依附于一类特别的对象类型——函数式接口。
 - Lambda 表达式是一种匿名函数，它是没有声明的方法，即没有访问修饰符、返回值声明和名字。
 
-**1.3.1、遍历集合**
+#### **1.3.1、遍历集合**
 
 ```java
 public class MyList {
@@ -64,6 +66,56 @@ public class MyList {
         list.forEach(System.out::println);
     }
 }
+```
+
+#### 1.3.2、集合排序
+
+```java
+public class MyListSort {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1,2,3,-5,0,30);
+        //JDK1.7写法
+        Collections.sort(list,new Comparator<Integer>() {
+    		@Override
+   			public int compare(Integer o1, Integer o2) {
+        		return o1 - o2;
+    		}
+		});
+		System.out.println(list);
+        
+        //JDK1.8写法
+        list.sort((i1,i2) -> i1-i2);
+        System.out.println(list);
+    }
+}
+```
+
+### 1.4、注意事项
+
+Lambda表达式的实质其实还是匿名内部类，而匿名内部类在访问外部局部变量时，要求变量必须声明为`final`！不过我们在使用Lambda表达式时无需声明`final`，这并不是说违反了匿名内部类的规则，因为Lambda底层会隐式的把变量设置为`final`，在后续的操作中，一定不能修改该变量：
+
+**正确示范：**
+
+```java
+// 定义一个局部变量
+int num = -1;
+Runnable r = () -> {
+    // 在Lambda表达式中使用局部变量num，num会被隐式声明为final
+    System.out.println(num);
+};
+new Thread(r).start();// -1
+```
+
+错误示范：
+
+```java
+// 定义一个局部变量
+int num = -1;
+Runnable r = () -> {
+    // 在Lambda表达式中使用局部变量num，num会被隐式声明为final，不能进行任何修改操作
+    System.out.println(num++);
+};
+new Thread(r).start();//报错
 ```
 
 
@@ -96,6 +148,54 @@ public interface MyInterface {
 ```
 
 ### 2.2、Function及BiFunction函数式接口
+
+#### 2.2.1、Function接口
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+	// 接收一个参数T，返回一个结果R
+    R apply(T t);
+}
+```
+
+Function 代表的是有参数，有返回值的函数。
+
+#### 2.2.2、BiFunction接口
+
+```java
+@FunctionalInterface
+public interface BiFunction<T, U, R> {
+
+    /**
+     * Applies this function to the given arguments.
+     *
+     * @param t the first function argument
+     * @param u the second function argument
+     * @return the function result
+     */
+    R apply(T t, U u);
+}
+```
+
+类似的 Function 接口：
+
+
+
+| 接口名                 | 描述                                        |
+| :--------------------- | ------------------------------------------- |
+| `DoubleFunction<R>`    | 接收double类型参数，并且返回R类型结果的函数 |
+| `IntFunction<R>`       | 接收int类型参数，并且返回R类型结果的函数    |
+| `LongFunction<R>`      | 接收long类型参数，并且返回R类型结果的函数   |
+| `ToDoubleFunction<T>`  | 接收T类型参数，并且返回double类型结果       |
+| `ToIntFunction<T>`     | 接收T类型参数，并且返回int类型结果          |
+| `ToLongFunction<T>`    | 接收T类型参数，并且返回long类型结果         |
+| `DoubleToIntFunction`  | 接收double类型参数，返回int类型结果         |
+| `DoubleToLongFunction` | 接收double类型参数，返回long类型结果        |
+
+这些都是一类函数接口，在 Function 基础上衍生出的，要么明确了参数不确定返回结果，要么明确结果不知道参数类型，要么两者都知道。
+
+#### 2.2.3、用法示例
 
 ```java
 public class FunctionTest {
@@ -162,6 +262,18 @@ public class FunctionTest2 {
 
 ### 2.3、Predicate函数式接口
 
+#### 2.3.1、Predicate接口
+
+```java
+@FunctionalInterface
+public interface Predicate<T> {
+	// 接收T类型参数，返回boolean类型结果
+    boolean test(T t);
+}
+```
+
+#### 2.3.2、用法示例
+
 ```java
 public class PredicateTest {
     public static void main(String[] args) {
@@ -205,6 +317,18 @@ public class PredicateTest2 {
 
 ### 2.4、Supplier函数式接口
 
+#### 2.4.1、Supplier接口
+
+```java
+@FunctionalInterface
+public interface Supplier<T> {
+	// 无需参数，返回一个T类型结果
+    T get();
+}
+```
+
+#### 2.4.2、用法示例
+
 ```java
 public class SupplierTest {
     public static void main(String[] args) {
@@ -218,13 +342,33 @@ public class SupplierTest {
 
 ### 2.5、BinaryOperator函数式接口
 
+#### 2.5.1、BinaryOperator接口
+
+```java
+@FunctionalInterface
+public interface BinaryOperator<T> extends BiFunction<T,T,T> {
+    
+    public static <T> BinaryOperator<T> minBy(Comparator<? super T> comparator) {
+        Objects.requireNonNull(comparator);
+        return (a, b) -> comparator.compare(a, b) <= 0 ? a : b;
+    }
+     public static <T> BinaryOperator<T> maxBy(Comparator<? super T> comparator) {
+        Objects.requireNonNull(comparator);
+        return (a, b) -> comparator.compare(a, b) >= 0 ? a : b;
+    }
+}
+```
+
+#### 2.5.2、用法示例
+
 ```java
 public class BinaryOperatorTest {
     public static void main(String[] args) {
         BinaryOperatorTest binaryOperator = new BinaryOperatorTest();
         System.out.println(binaryOperator.compute(1, 2, (a, b) -> a + b));
-
+		//返回长度比较短的字符串
         System.out.println(binaryOperator.minStr("hello1","world",(a,b)-> a.length() - b.length()));
+        //返回首字母比较小的字符串
         System.out.println(binaryOperator.minStr("hello1","world",(a,b)->a.charAt(0) - b.charAt(0)));
 
     }

@@ -1392,8 +1392,6 @@ slf4j+log4j的方式；
 
 ## 1、简介
 
-
-
 使用SpringBoot；
 
 **1）、创建SpringBoot应用，选中我们需要的模块；**
