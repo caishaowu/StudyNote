@@ -54,38 +54,33 @@
 >
 > **limit**	<limit_number>
 
-![1550494318883](C:\Users\csw\AppData\Roaming\Typora\typora-user-images\1550494318883.png)
-
 ## Join图 
 
-![âjoin å¾âçå¾çæç´¢ç"æ](https://raw.githubusercontent.com/mzlogin/mzlogin.github.io/master/images/posts/database/Visual_SQL_JOINS_orig.jpg)
+![](常见的join查询.assets/sql-join.png)
 
 #### inner join
 
-> select * from employee a inner join department b on a.deptId = b.id;
+- `select * from employee a inner join department b on a.deptId = b.id;`
 
 #### left join(右表不满足条件的用null补全)
 
-> select * from employee a left join department b on a.deptId = b.id;
->
-> select * from employee a left join department b on a.deptId = b.id where b.id is null;
+- `select * from employee a left join department b on a.deptId = b.id;`
+
+- `select * from employee a left join department b on a.deptId = b.id where b.id is null;`
 
 #### right join(左表不满足条件的用null补全)
 
-> select * from employee a right join department b on a.deptId = b.id;
->
-> select * from employee a right join department b on a.deptId = b.id where a.id is null;
+- `select * from employee a right join department b on a.deptId = b.id;`
+
+- `select * from employee a right join department b on a.deptId = b.id where a.id is null;`
 
 #### full outer join(MySQL不支持该语法)
 
-> select * from employee a left join department b on a.deptId = b.id
->
-> union
->
-> select * from employee a right join department b on a.deptId = b.id;
+- `select * from employee a left join department b on a.deptId = b.id union select * from employee a right join department b on a.deptId = b.id;`
 
-> select * from employee a left join department b on a.deptId = b.id where b.id is null
->
-> union
->
-> select * from employee a right join department b on a.deptId = b.id where a.id is null;
+- `select * from employee a left join department b on a.deptId = b.id where b.id is null union select * from employee a right join department b on a.deptId = b.id where a.id is null;`
+
+
+
+
+

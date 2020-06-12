@@ -2,7 +2,7 @@
 
 ## 1、Git简介
 
-git官网：[https://www.git-scm.com](https://www.git-scm.com/)
+git官网：[https://www.git-scm.com](https://www.git-scm.com/) 
 
 ### 1.1、Git 简史
 
@@ -119,6 +119,12 @@ windows 直接上官网安装即可
 
 - 作用：将工作区的修改添加到暂存区
 
+```shell
+git add documentation/*.txt  #添加documentation目录及其子目录下所有*.txt文件的内容：
+git add .  # 将所有修改添加到暂存区
+git add *Controller   # 将以Controller结尾的文件的所有修改添加到暂存区
+```
+
 
 
 #### ② git commit
@@ -200,7 +206,7 @@ windows 直接上官网安装即可
 
 #### ⑧ git stash
 
-- 工作中，我们可能在 feature1分支上开发功能，但临时来了一个紧急需求，需要切换到 feature2 上进行开发，我们又不能把 feature1 中开发一半的代码提交，这样不符合规范。所以可以用 `git bash`命令
+- 工作中，我们可能在 feature1分支上开发功能，但临时来了一个紧急需求，需要切换到 feature2 上进行开发，我们又不能把 feature1 中开发一半的代码提交，这样不符合规范。所以可以用 `git stash`命令
 
 ![1572510729566](Git入门指引.assets/1572510729566.png)
 
@@ -231,7 +237,8 @@ windows 直接上官网安装即可
 - `git tag v1.0`：创建一个轻量级标签
 - `git tag -a v2.0 -m ‘v2.0 released’`：创建一个带有附注的标签
 - `git tag -l tag_name`：查找标签
-- `git tag -d tag_name`：删除标签
+- `git tag -d tag_name`：删除本地标签
+- `git push origin :refs/tags/tag_name`：删除远程库标签
 - `git show tag_name`：查看标签相关信息
 - `git push origin tag_name`：将指定标签推送到远程库
 - `git push origin --tags`：将本地未推送的标签全部推送到远程库 
@@ -278,8 +285,11 @@ windows 直接上官网安装即可
 #### ⑤ git branch
 
 - 作用：查看当前分支
+
 - `git branch new_branch commit id`：以 commit id 提交为基准创建分支
+
 - `git branch -v`：显示当前分支最新的一条消息
+
 - `git branch -m oldName newName`：修改分支名称
 
 - `git branch new_branch`：创建新分支
@@ -290,8 +300,11 @@ windows 直接上官网安装即可
 
   可使用 -D 强制删除
 
--  `git checkout -b new_branch`：创建并切换到新分支
--  `git merge new_branch`：将 new_branch 合并到当前分支
+- `git checkout -b new_branch`：创建并切换到新分支
+
+- `git merge new_branch`：将 new_branch 合并到当前分支
+
+-  `git remote update origin --prune`：更新远程分支的本地列表
 
 
 

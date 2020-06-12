@@ -1,6 +1,7 @@
 ### 先执行 rpm -qa | grep -i mysql  查看是否已安装了MySQL
 
-CENTOS 执行RPM -IVH MYSQL-CLIENT-5.5.48-1.LINUX2.6.I386.RPM出现以下错误：</BR>
+CENTOS 执行`RPM -IVH MYSQL-CLIENT-5.5.48-1.LINUX2.6.I386.RPM`出现以下错误：</BR>
+
 <B>WARNING: MYSQL-SERVER-5.5.48-1.LINUX2.6.I386.RPM: HEADER V3 DSA/SHA1 SIGNATURE, KEY ID 5072E1F5: NOKEY
 error: Failed dependencies:
 	libaio.so.1 is needed by MySQL-server-5.5.48-1.linux2.6.i386 </b>
