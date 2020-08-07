@@ -369,6 +369,12 @@ public class Stove {
 
 ### 7.3、泛型与集合
 
+**泛型数组**
+
+https://segmentfault.com/a/1190000005179147
+
+https://www.zhihu.com/question/20928981
+
 ## 8、反射
 
 ## 9、Java和C++的区别

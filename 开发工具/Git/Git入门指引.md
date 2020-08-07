@@ -163,10 +163,10 @@ git add *Controller   # 将以Controller结尾的文件的所有修改添加到�
 - 作用：设置签名，区分不同开发人员的身份
 - 项目级别/仓库级别：仅在当前本地库范围有效，信息保存在 ./.git/config 文件
   - `git config user.name caisw`
-  - `git config user.email caisw11@chinaunicom.com`
+  - `git config user.email caisw715@gmail.com`
 - 系统用户级别：登录当前操作系统的用户方位，信息保存在 ~/.gitconfig 文件
   - `git config --global user.name caisw`
-  - `git config --global user.email caisw11@chinaunicom.com`
+  - `git config --global user.email caisw715@gmail.com`
   - `git config --global alias.br branch`：给 branch 命令起别名，之后使用该命令直接`git br`即可
 - 就近原则：二者都有设置时采用项目级别的签名
 

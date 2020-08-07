@@ -263,7 +263,7 @@ rm -rf /var/run/redis.pid
 >3. 哨兵1是被选举为要执行后续的主备切换的那个哨兵
 >4. 哨兵1去新的master（slave）获取了一个新的config version
 >5. 尝试执行 failover
->6. 投票选举出一个 slave 区切换成 master ，每隔哨兵都会执行一次投票
+>6. 投票选举出一个 slave 区切换成 master ，每个哨兵都会执行一次投票
 >7. 让salve，slaveof noone，不让它去做任何节点的slave了; 把slave提拔成master; 旧的master认为不再是master了
 >8. 哨兵就自动认为之前的9:6379变成了slave了，12:6379变成了master了
 >9. 哨兵去探查了一下12:6379这个salve的状态，认为它sdown了

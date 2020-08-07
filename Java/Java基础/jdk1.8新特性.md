@@ -549,7 +549,46 @@ public class StreamTest7 {
                  collect(Collectors.toList()).forEach(System.out::println);
 ```
 
+```java
+public class Test {
+    private String provinceCode;
+    private String cityCode;
+}
 
+
+  public static void main(String[] args) {
+        List<Test> list = new ArrayList<>();
+        list.add(new Test("51","33"));
+        list.add(new Test("51","35"));
+        list.add(new Test("52","36"));
+        list.add(new Test("53","37"));
+        list.add(new Test("52","38"));
+		//统计同一省份下的地市，地市用，分隔
+        Map<String, String> map = list.stream().collect(Collectors.toMap(Test::getProvinceCode, Test::getCityCode, (ex,re) -> ex + "," +  re));
+    }
+
+
+
+//Collectors.toMap 有三个重载方法：
+toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper);
+toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper,
+        BinaryOperator<U> mergeFunction);
+toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper,
+        BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier);
+
+/**
+参数含义分别是：
+
+keyMapper：Key 的映射函数
+
+valueMapper：Value 的映射函数
+
+mergeFunction：当 Key 冲突时，调用的合并方法
+
+mapSupplier：Map 构造器，在需要返回特定的 Map 时使用
+*/
+list.stream().collect(Collectors.toMap(Test::getProvinceCode, Test::getCityCode, (ex,re) -> ex + "," +  re,TreeMap::new));
+```
 
 ## 4、Optional
 
